@@ -32,9 +32,33 @@ public class Owlet : MonoBehaviour
         }
 
     }
-    
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, radius);
+    }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+    if (collision.gameObject.CompareTag("Obstacle"))
+        {
+        // Trigger death animation
+        owlerAnimator.SetTrigger("Die");
+
+        // Calling coroutine
+        StartCoroutine(WaitAndPause());
+        }
+    }
+
+    private IEnumerator WaitAndPause()
+    {
+    // Wait for 0.5 seconds
+    yield return new WaitForSecondsRealtime(0.5f);
+
+    // Show Game Over screen
+    GameManager.instance.ShowGameOverScreen();
+
+    // Pause the game
+    Time.timeScale = 0f;
     }
 }
