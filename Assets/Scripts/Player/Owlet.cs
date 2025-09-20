@@ -49,6 +49,10 @@ public class Owlet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            if (GameManager.Instance.isInvincible)
+            {
+                return;
+            }
             if (GameManager.Instance.isDead == false)
             {
                 GameManager.Instance.DecreaseHealth();

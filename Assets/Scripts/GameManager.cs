@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float initialScrollingSpeed;
 
     public bool isDead = false;
+    public bool isInvincible = false;
+    private float invincibleDuration = 3f;
     public int Health = 3;
     private int score;
     private float scoreTimer;
@@ -78,7 +80,7 @@ public class GameManager : MonoBehaviour
         if (Health < 0)
             Health = 0;
 
-         healthManager.UpdateHearts(Health); 
+        healthManager.UpdateHearts(Health);
 
         if (Health <= 0)
         {
@@ -86,6 +88,35 @@ public class GameManager : MonoBehaviour
             ShowGameOverScreen();
             Time.timeScale = 0f;
         }
+    }
+
+    public void IncreaseHealth()
+    {
+        Health++;
+        healthManager.UpdateHearts(Health);
+    }
+
+    public void SetInvincible()
+    {
+        if (!isInvincible)
+        {
+            StartCoroutine(InvincibilityCoroutine());
+        }
+    }
+    private IEnumerator InvincibilityCoroutine()
+    {
+    isInvincible = true;
+    Debug.Log("Jugador invencible");
+
+    yield return new WaitForSeconds(invincibleDuration);
+
+    isInvincible = false;
+    Debug.Log("Fin de la invencibilidad");
+    }
+
+    public bool IsInvincible()
+    {
+    return isInvincible;
     }
 
 }
