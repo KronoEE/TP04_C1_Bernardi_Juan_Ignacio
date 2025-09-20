@@ -61,4 +61,9 @@ public class GameManager : MonoBehaviour
         float speedDivider = 10f;
         scrollingSpeed = initialScrollingSpeed + scoreTimer / speedDivider;
     }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+    }
 }
