@@ -17,7 +17,7 @@ public class MovingGround : MonoBehaviour
         // If the ground's x position is less than negative spriteWidth, move it to the right by spriteWidth * 2, so it appears to be always generating
         if (transform.position.x < -spriteWidth)
         {
-            transform.Translate(Vector2.right * spriteWidth * 2);
+            transform.Translate(Vector2.right * 2f * spriteWidth);
         }
     }
 }

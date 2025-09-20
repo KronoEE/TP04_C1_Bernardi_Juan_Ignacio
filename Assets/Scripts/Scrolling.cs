@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-
     void Update()
     {
         // Move the background to the left based on scrollSpeed var and Time.deltaTime
