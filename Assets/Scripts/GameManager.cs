@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private float initialScrollingSpeed;
+    [SerializeField] private TMP_Text invincibleTimerText;
 
     public bool isDead = false;
     public bool isInvincible = false;
@@ -103,20 +104,32 @@ public class GameManager : MonoBehaviour
             StartCoroutine(InvincibilityCoroutine());
         }
     }
-    private IEnumerator InvincibilityCoroutine()
-    {
+   private IEnumerator InvincibilityCoroutine()
+{
     isInvincible = true;
-    Debug.Log("Jugador invencible");
 
-    yield return new WaitForSeconds(invincibleDuration);
+    float timer = invincibleDuration;
+
+    while (timer > 0f)
+    {
+        // Mostrar tiempo con 1 decimal
+        if (invincibleTimerText != null)
+            invincibleTimerText.text = "Invincible: " + timer.ToString("F1") + "s";
+
+        timer -= Time.deltaTime;
+        yield return null;
+    }
+
+    // Reset UI cuando termina
+    if (invincibleTimerText != null)
+        invincibleTimerText.text = "";
 
     isInvincible = false;
-    Debug.Log("Fin de la invencibilidad");
-    }
+}
 
     public bool IsInvincible()
     {
-    return isInvincible;
+        return isInvincible;
     }
 
 }
