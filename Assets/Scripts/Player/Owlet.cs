@@ -38,17 +38,11 @@ public class Owlet : MonoBehaviour
         }
 
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(groundCheck.position, radius);
-    }
-
-
     void CrateJumpParticle()
     {
         jumpParticle.Play();
     }
+
     // Detecting collision with obstacles
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -79,6 +73,5 @@ public class Owlet : MonoBehaviour
         Time.timeScale = 0f;
     }
     
-
 
 }
