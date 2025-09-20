@@ -9,19 +9,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private float initialScrollingSpeed;
+
+    public bool isDead = false;
+    public int Health = 3;
     private int score;
     private float scoreTimer;
     private float scrollingSpeed;
-    public static GameManager instance { get; private set; }
+    public static GameManager Instance { get; private set; }
+    public HealthManager healthManager;
     void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
     }
 
@@ -66,4 +70,22 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
     }
+
+    public void DecreaseHealth()
+    {
+        Health--;
+
+        if (Health < 0)
+            Health = 0;
+
+         healthManager.UpdateHearts(Health); 
+
+        if (Health <= 0)
+        {
+            isDead = true;
+            ShowGameOverScreen();
+            Time.timeScale = 0f;
+        }
+    }
+
 }

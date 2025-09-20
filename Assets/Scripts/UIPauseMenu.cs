@@ -86,7 +86,7 @@ public class UIPauseMenu : MonoBehaviour
 
     private void OnMainMenuClicked()
     {
-        GameManager.instance.BackToMenu();
+        GameManager.Instance.BackToMenu();
         Time.timeScale = 1f;
     }
 

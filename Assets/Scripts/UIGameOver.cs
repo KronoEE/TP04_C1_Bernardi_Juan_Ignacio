@@ -24,13 +24,13 @@ public class UIGameOver : MonoBehaviour
     }
     private void OnPlayClicked()
     {
-        GameManager.instance.RestartGame();
+        GameManager.Instance.RestartGame();
         gameOverScreen.SetActive(false);
     }
 
     private void OnMenuClicked()
     {
-        GameManager.instance.BackToMenu();
+        GameManager.Instance.BackToMenu();
         gameOverScreen.SetActive(false);
     }
 }

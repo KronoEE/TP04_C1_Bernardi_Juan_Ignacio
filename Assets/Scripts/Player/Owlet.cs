@@ -19,6 +19,7 @@ public class Owlet : MonoBehaviour
         // Getting the Rigidbody2D component attached to the Owlet GameObject
         rb = GetComponent<Rigidbody2D>();
         owlerAnimator = GetComponent<Animator>();
+
     }
 
 
@@ -48,11 +49,20 @@ public class Owlet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            // Trigger death animation
-            owlerAnimator.SetTrigger("Die");
+            if (GameManager.Instance.isDead == false)
+            {
+                GameManager.Instance.DecreaseHealth();
+                Destroy(collision.gameObject);
+            }
+            if (GameManager.Instance.isDead == true)
+            {  
+                 // Trigger death animation
+                owlerAnimator.SetTrigger("Die");
 
-            // Calling coroutine
-            StartCoroutine(WaitAndPause());
+                // Calling coroutine
+                StartCoroutine(WaitAndPause());
+            }
+            
         }
     }
 
@@ -65,7 +75,7 @@ public class Owlet : MonoBehaviour
         playerSoundController.playDeathSound();
 
         // Show Game Over screen
-        GameManager.instance.ShowGameOverScreen();
+        GameManager.Instance.ShowGameOverScreen();
 
         audioManager.Stop();
 
