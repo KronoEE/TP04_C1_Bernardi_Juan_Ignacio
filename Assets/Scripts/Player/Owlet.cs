@@ -51,6 +51,7 @@ public class Owlet : MonoBehaviour
         {
             if (GameManager.Instance.isInvincible)
             {
+                Destroy(collision.gameObject);
                 return;
             }
             if (GameManager.Instance.isDead == false)

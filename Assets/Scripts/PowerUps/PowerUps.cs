@@ -13,12 +13,13 @@ public class PowerUp : MonoBehaviour
             {
                 GameManager.Instance.IncreaseHealth();
 
-            } else if (!bisPowerUpHealth)
+            }
+            else if (!bisPowerUpHealth)
             {
                 GameManager.Instance.SetInvincible();
             }
             Debug.Log("Power-up collected!");
-            Destroy(gameObject); 
+            Destroy(gameObject);  
         }
     }
 
