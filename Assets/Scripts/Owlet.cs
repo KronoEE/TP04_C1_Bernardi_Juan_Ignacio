@@ -38,15 +38,16 @@ public class Owlet : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, radius);
     }
     
+    // Detecting collision with obstacles
     private void OnCollisionEnter2D(Collision2D collision)
     {
-    if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
-        // Trigger death animation
-        owlerAnimator.SetTrigger("Die");
+            // Trigger death animation
+            owlerAnimator.SetTrigger("Die");
 
-        // Calling coroutine
-        StartCoroutine(WaitAndPause());
+            // Calling coroutine
+            StartCoroutine(WaitAndPause());
         }
     }
 
