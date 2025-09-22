@@ -18,7 +18,6 @@ public class PowerUp : MonoBehaviour
             {
                 GameManager.Instance.SetInvincible();
             }
-            Debug.Log("Power-up collected!");
             Destroy(gameObject);  
         }
     }
