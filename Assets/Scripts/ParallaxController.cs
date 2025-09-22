@@ -11,7 +11,7 @@ public class ParallaxController : MonoBehaviour
     float distance;
 
     [Range(0.01f, 0.05f)]
-    public float parallaxSpeed = 0.02f; // sensibilidad general del parallax
+    public float parallaxSpeed = 0.02f; 
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class ParallaxController : MonoBehaviour
 
         float farthestBack = 0f;
 
-        // Guardo materiales y calculo cuál es el fondo más alejado
+        
         for (int i = 0; i < backCount; i++)
         {
             backgrounds[i] = transform.GetChild(i).gameObject;
@@ -33,7 +33,7 @@ public class ParallaxController : MonoBehaviour
                 farthestBack = depth;
         }
 
-        // Calculo velocidades relativas según la distancia al fondo
+        
         for (int i = 0; i < backCount; i++)
         {
             float depth = Mathf.Abs(backgrounds[i].transform.position.z);
@@ -43,7 +43,7 @@ public class ParallaxController : MonoBehaviour
 
     void LateUpdate()
     {
-        // Avanzo "distance" según la velocidad global del juego
+        
         float worldSpeed = GameManager.Instance.GetScrollingSpeed();
         distance += worldSpeed * Time.deltaTime;
 
